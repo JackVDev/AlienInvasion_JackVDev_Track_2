@@ -12,8 +12,14 @@ if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
 
 class GameStats():
-
+    """Handles the score and other stats about the game that change often
+    """
     def __init__(self, game: 'AlienInvasion'):
+        """Initializes the class
+
+        Args:
+            game (AlienInvasion): A reference back to the main game
+        """
         self.game = game
         self.settings = game.settings
         self.max_score = 0
@@ -21,6 +27,8 @@ class GameStats():
         self.reset_stats()
 
     def init_saved_scores(self):
+        """Accesses the High Score from scores.json, and saves it to a class variable
+        """
         self.path = self.settings.scores_file
         if self.path.exists() and self.path.stat.__sizeof__() > 20:
             contents = self.path.read_text()
@@ -32,6 +40,8 @@ class GameStats():
             # save the file
 
     def save_scores(self):
+        """Saves the High Score to scores.json
+        """
         scores = {'hi_score': self.hi_score}
         contents = json.dumps(scores, indent=4)
         try:
@@ -40,11 +50,18 @@ class GameStats():
             print(f"File Not Found: {e}")
 
     def reset_stats(self):
+        """Resets the level, score, and lives
+        """
         self.ships_left = self.settings.starting_ship_count
         self.score = 0
         self.level = 1
 
     def update(self, collisions):
+        """_summary_
+
+        Args:
+            collisions (dict): Key:Value pairs from collisions between the bullets and aliens
+        """
         # update score
         self._update_score(collisions)
         # update max score
@@ -53,20 +70,31 @@ class GameStats():
         self._update_hi_score()
 
     def _update_score(self, collisions):
+        """Updates the score based on collisions between bullets and aliens
+
+        Args:
+            collisions (dict): Key:Value pairs from collisions between the bullets and aliens
+        """
         for alien in collisions.values():
             self.score += self.settings.alien_points
         #print(f"Basic: {self.score}")
 
     def _update_max_score(self):
+        """If the Score is greater than the Max Score, updates the Max Score to match
+        """
         if self.score > self.max_score:
             self.max_score = self.score
         #print(f"Max: {self.max_score}")
 
     def _update_hi_score(self):
+        """If the Score is greater than the High Score, updates the High Score to match
+        """
         if self.score > self.hi_score:
             self.hi_score = self.score
         #print(f"Hi: {self.hi_score}")
 
     def update_level(self):
+        """Increments the level by one
+        """
         self.level += 1
         #print(self.level)
