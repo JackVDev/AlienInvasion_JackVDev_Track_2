@@ -6,8 +6,11 @@
 """
 from pathlib import Path
 class Settings:
-
+    """Contains settings and values for the working of the game
+    """
     def __init__(self):
+        """Initializes the class and sets up 'permanent' settings
+        """
         self.name: str = "Alien Invasion"
         self.screen_w = 1200
         self.screen_h = 800
@@ -39,6 +42,8 @@ class Settings:
         self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Silkscreen' / 'Silkscreen-Bold.ttf'
 
     def initialize_dynamic_settings(self):
+        """Sets up the 'dynamic' settings
+        """
         self.ship_speed = 5
         self.starting_ship_count = 3
 
@@ -52,6 +57,8 @@ class Settings:
         self.alien_points = 50
 
     def increase_difficulty(self):
+        """Multiplies the ship, bullet, and fleet speed by a preset difficulty scale
+        """
         self.ship_speed *= self.difficulty_scale
         self.bullet_speed *= self.difficulty_scale
         self.fleet_speed *= self.difficulty_scale
