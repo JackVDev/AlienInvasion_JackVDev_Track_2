@@ -17,8 +17,11 @@ from button import Button
 from hud import HUD
 
 class AlienInvasion:
-
+    """Manages and runs the entire game
+    """
     def __init__(self):
+        """Initializes the class and game
+        """
         pygame.init()
         self.settings = Settings()
         self.settings.initialize_dynamic_settings()
@@ -49,6 +52,8 @@ class AlienInvasion:
         self.game_active = False
 
     def run_game(self):
+        """Runs the game
+        """
         # Game Loop
         while self.running:
             self._check_events()
@@ -60,6 +65,9 @@ class AlienInvasion:
             self.clock.tick(self.settings.FPS)
 
     def _check_collisions(self):
+        """Checks collisions for the ship, aliens, and bullets.
+            Also checks for if the alien fleet is completely destroyed
+        """
         # check collisions for ship
         if self.ship.check_collisions(self.alien_fleet.fleet):
             self._check_game_status()
@@ -84,6 +92,8 @@ class AlienInvasion:
             self.HUD.update_level()
 
     def _check_game_status(self):
+        """Removes a life before resetting the level, and ends the game if there are no lives left
+        """
         if self.game_stats.ships_left > 0:
             self.game_stats.ships_left -= 1
             self._reset_level()
@@ -95,11 +105,15 @@ class AlienInvasion:
 
 
     def _reset_level(self):
+        """Removes all aliens and projectiles on screen, and rebuilds the fleet
+        """
         self.ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
 
     def restart_game(self):
+        """Completely resets the game
+        """
         self.settings.initialize_dynamic_settings()
         self.game_stats.reset_stats()
         self.HUD.update_scores()
@@ -109,6 +123,8 @@ class AlienInvasion:
         pygame.mouse.set_visible(False)
 
     def _update_screen(self):
+        """Draws everything to the screen
+        """
         self.screen.blit(self.bg, (0,0))
         self.ship.draw()
         self.alien_fleet.draw()
@@ -121,6 +137,8 @@ class AlienInvasion:
         pygame.display.flip()
 
     def _check_events(self):
+        """Checks for key presses other input events
+        """
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -135,17 +153,29 @@ class AlienInvasion:
                 self._check_button_clicked()
 
     def _check_button_clicked(self):
+        """Checks if the play button was pressed, and if so restarts the game
+        """
         mouse_pos = pygame.mouse.get_pos()
         if self.play_button.check_clicked(mouse_pos):
             self.restart_game()
     
     def _check_keyup_events(self, event):
+        """Checks for keys being unpressed
+
+        Args:
+            event (pygame event): The input event that occured
+        """
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
 
     def _check_keydown_events(self, event):
+        """Checks for keys being pressed
+
+        Args:
+            event (pygame event): The input event that occured
+        """
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
@@ -161,7 +191,7 @@ class AlienInvasion:
             sys.exit()
 
 
-
+# Runs the game
 if __name__ == '__main__':
     ai = AlienInvasion()
     ai.run_game()
