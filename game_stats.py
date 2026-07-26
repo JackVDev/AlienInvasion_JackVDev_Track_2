@@ -1,3 +1,9 @@
+"""
+    game_stats.py
+    Jack Verdin
+    Holds the GameStats class which is used to store and update the score and level in the game
+    7/26/2026
+"""
 #from pathlib import Path
 import json
 from typing import TYPE_CHECKING

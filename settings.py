@@ -1,3 +1,9 @@
+"""
+    settings.py
+    Jack Verdin
+    This contains the Settings class, which stores information about how the game works to be accessed by other files.
+    7/26/2026
+"""
 from pathlib import Path
 class Settings:
 

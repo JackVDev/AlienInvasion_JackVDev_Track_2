@@ -1,3 +1,9 @@
+"""
+    ship.py
+    Jack Verdin
+    Holds the Ship class which controls and maintains the Player's Ship
+    7/26/2026
+"""
 import pygame
 from typing import TYPE_CHECKING
 

@@ -1,3 +1,9 @@
+"""
+    bullet.py
+    Jack Verdin
+    Holds the Bullet class which controls the player's projectile and it's functions
+    7/26/2026
+"""
 import pygame
 from pygame.sprite import Sprite
 from typing import TYPE_CHECKING

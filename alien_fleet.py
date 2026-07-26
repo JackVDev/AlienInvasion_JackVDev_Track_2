@@ -1,3 +1,9 @@
+"""
+    alien_fleet.py
+    Jack Verdin
+    Holds the AlienFleet class, which controls the movement and creation of the enemies
+    7/26/2026
+"""
 import pygame
 from alien import Alien
 from typing import TYPE_CHECKING

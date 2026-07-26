@@ -1,3 +1,9 @@
+"""
+    button.py
+    Jack Verdin
+    Holds the Button class, which is used to create the Start Button for the main game
+    7/26/2026
+"""
 import pygame.font
 from typing import TYPE_CHECKING
 

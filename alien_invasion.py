@@ -1,3 +1,9 @@
+"""
+    alien_invasion.py
+    Jack Verdin
+    Holds the AlienInvasion class, which controls and runs the whole game
+    7/26/2026
+"""
 import sys
 import pygame
 from settings import Settings

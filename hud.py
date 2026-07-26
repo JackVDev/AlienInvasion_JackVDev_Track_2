@@ -1,3 +1,9 @@
+"""
+    hud.py
+    Jack Verdin
+    Holds the HUD class which is used to display information about the game on the screen for the player
+    7/26/2026
+"""
 import pygame.font
 #from alien_invasion import AlienInvasion
 #from typing import TYPE_CHECKING

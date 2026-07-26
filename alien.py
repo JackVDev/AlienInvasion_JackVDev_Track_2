@@ -1,3 +1,9 @@
+"""
+    alien.py
+    Jack Verdin
+    Holds the Alien class, which controls the properties of individual enemies
+    7/26/2026
+"""
 import pygame
 from pygame.sprite import Sprite
 from typing import TYPE_CHECKING

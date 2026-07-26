@@ -1,3 +1,9 @@
+"""
+    arsenal.py
+    Jack Verdin
+    Holds the Arsenal class which manages the player's ability to shoot
+    7/26/2026
+"""
 import pygame
 from bullet import Bullet
 from typing import TYPE_CHECKING
