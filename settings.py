@@ -16,7 +16,7 @@ class Settings:
         self.screen_h = 800
         self.FPS = 60
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'PirateBackground.png'
-        self.difficulty_scale = 1.1
+        self.difficulty_scale = 0.1
         self.scores_file = Path.cwd() / 'Assets' / 'file' / 'scores.json'
 
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'cannonMobile.png'
@@ -44,21 +44,27 @@ class Settings:
     def initialize_dynamic_settings(self):
         """Sets up the 'dynamic' settings
         """
-        self.ship_speed = 5
+        self.ship_speed_base = 5
+        self.ship_speed = self.ship_speed_base
         self.starting_ship_count = 3
 
         self.bullet_w = 20
         self.bullet_h = 20
-        self.bullet_speed = 7
+        self.bullet_speed_base = 7
+        self.bullet_speed = self.bullet_speed_base
         self.bullet_amount = 5
-        
-        self.fleet_speed = 2
-        self.fleet_drop_speed = 40
-        self.alien_points = 50
 
-    def increase_difficulty(self):
+        self.fleet_speed_base = 2
+        self.fleet_speed = self.fleet_speed_base
+        self.fleet_drop_speed = 40
+        self.alien_points_base = 100
+        self.alien_points = self.alien_points_base
+
+    def increase_difficulty(self, level):
         """Multiplies the ship, bullet, and fleet speed by a preset difficulty scale
         """
-        self.ship_speed *= self.difficulty_scale
-        self.bullet_speed *= self.difficulty_scale
-        self.fleet_speed *= self.difficulty_scale
+        level -= 1
+        self.ship_speed = self.ship_speed_base * (1 + (self.difficulty_scale * level))
+        self.alien_points = self.alien_points_base * (1 + (self.difficulty_scale * level))
+        self.bullet_speed = self.bullet_speed_base * (1 + (self.difficulty_scale * level))
+        self.fleet_speed = self.fleet_speed_base * (1 + (self.difficulty_scale * level))
