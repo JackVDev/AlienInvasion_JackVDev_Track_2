@@ -42,7 +42,7 @@ class AlienFleet:
         if self.game.game_stats.level % 5 == 0:
             self._create_boss_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
         else:
-            self._create_slope_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
+            self._create_rectangle_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
 
     def _create_rectangle_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
         """Creates a fleet in the shape of a rectangle
