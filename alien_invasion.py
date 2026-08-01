@@ -86,10 +86,10 @@ class AlienInvasion:
             self.HUD.update_scores()
 
         if self.alien_fleet.check_destroyed_status():
-            self._reset_level()
             self.game_stats.update_level()
             self.settings.increase_difficulty(self.game_stats.level)
             self.HUD.update_level()
+            self._reset_level()
 
     def _check_game_status(self):
         """Removes a life before resetting the level, and ends the game if there are no lives left

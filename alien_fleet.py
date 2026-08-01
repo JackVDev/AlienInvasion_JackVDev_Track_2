@@ -27,8 +27,6 @@ class AlienFleet:
         self.fleet = pygame.sprite.Group()
         self.fleet_direction = self.settings.fleet_direction
         self.fleet_drop_speed = self.settings.fleet_drop_speed
-
-        self.create_fleet()
     
     def create_fleet(self):
         """Calculates the size of and creates an alien fleet
@@ -41,7 +39,10 @@ class AlienFleet:
         fleet_w, fleet_h = self.calculate_fleet_size(alien_w, screen_w, alien_h, screen_h)
         x_offset, y_offset = self.calculate_offsets(alien_w, alien_h, screen_w, fleet_w, fleet_h)
 
-        self._create_rectangle_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
+        if self.game.game_stats.level % 5 == 0:
+            self._create_boss_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
+        else:
+            self._create_slope_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
 
     def _create_rectangle_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
         """Creates a fleet in the shape of a rectangle
@@ -58,6 +59,28 @@ class AlienFleet:
             for col in range(fleet_w):
                 current_x = alien_w * col + x_offset
                 current_y = alien_h * row + y_offset
+                if col % 2 == 0 or row % 2 == 0:
+                    continue
+                self._create_alien(current_x, current_y)
+
+    def _create_boss_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
+        """Creates a large fleet in the shape of a triangle
+
+        Args:
+            alien_w (int): The width of an alien
+            alien_h (int): The height of an alien
+            fleet_w (int): The total width of the fleet
+            fleet_h (int): The total height of the fleet
+            x_offset (int): The space between each alien on the x axis
+            y_offset (int): The space between each alien on the y axis
+        """
+
+        for row in range(fleet_h*2):
+            for col in range(fleet_w):
+                current_x = alien_w * col + x_offset
+                current_y = (alien_h * row + y_offset) - self.settings.screen_h
+                if (col < row) or (col >= fleet_w-row):
+                    continue
                 if col % 2 == 0 or row % 2 == 0:
                     continue
                 self._create_alien(current_x, current_y)
