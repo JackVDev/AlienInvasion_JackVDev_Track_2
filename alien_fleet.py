@@ -42,7 +42,7 @@ class AlienFleet:
         if self.game.game_stats.level % 5 == 0:
             self._create_boss_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
         else:
-            self._create_rectangle_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
+            self._create_wave_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
 
     def _create_rectangle_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
         """Creates a fleet in the shape of a rectangle
@@ -59,6 +59,25 @@ class AlienFleet:
             for col in range(fleet_w):
                 current_x = alien_w * col + x_offset
                 current_y = alien_h * row + y_offset
+                if col % 2 == 0 or row % 2 == 0:
+                    continue
+                self._create_alien(current_x, current_y)
+
+    def _create_wave_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
+        """Creates a fleet in the shape of a rectangle
+
+        Args:
+            alien_w (int): The width of an alien
+            alien_h (int): The height of an alien
+            fleet_w (int): The total width of the fleet
+            fleet_h (int): The total height of the fleet
+            x_offset (int): The space between each alien on the x axis
+            y_offset (int): The space between each alien on the y axis
+        """
+        for col in range(fleet_w):
+            for row in range(fleet_h):
+                current_x = alien_w * col + x_offset
+                current_y = alien_h * row + y_offset + (y_offset * ((col-2) % 3) * 0.5)
                 if col % 2 == 0 or row % 2 == 0:
                     continue
                 self._create_alien(current_x, current_y)
