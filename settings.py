@@ -24,8 +24,8 @@ class Settings:
         self.ship_h = 45
 
         self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'cannonBall.png'
-        self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
-        self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
+        self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'cannon_fire.ogg'
+        self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'bang_03.ogg'
 
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'pirate_ship.png'
         self.alien_w = 40
