@@ -11,7 +11,7 @@ class Settings:
     def __init__(self):
         """Initializes the class and sets up 'permanent' settings
         """
-        self.name: str = "Alien Invasion"
+        self.name: str = "Pirate Assault"
         self.screen_w = 1200
         self.screen_h = 800
         self.FPS = 60
@@ -39,7 +39,7 @@ class Settings:
         self.text_color = (255, 255, 255)
         self.button_font_size = 40
         self.HUD_font_size = 20
-        self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Silkscreen' / 'Silkscreen-Bold.ttf'
+        self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Pirata_One' / 'PirataOne-Regular.ttf'
 
     def initialize_dynamic_settings(self):
         """Sets up the 'dynamic' settings
