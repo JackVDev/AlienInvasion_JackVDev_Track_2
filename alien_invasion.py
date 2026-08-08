@@ -118,6 +118,7 @@ class AlienInvasion:
         self.game_stats.reset_stats()
         self.HUD.update_scores()
         self._reset_level()
+        self.HUD.update_level()
         self.ship._center_ship()
         self.game_active = True
         pygame.mouse.set_visible(False)
@@ -128,12 +129,13 @@ class AlienInvasion:
         self.screen.blit(self.bg, (0,0))
         self.ship.draw()
         self.alien_fleet.draw()
-        self.HUD.draw()
 
         if not self.game_active:
+            self.HUD.game_over_scores()
             self.play_button.draw()
             pygame.mouse.set_visible(True)
 
+        self.HUD.draw()
         pygame.display.flip()
 
     def _check_events(self):
