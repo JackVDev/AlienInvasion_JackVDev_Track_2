@@ -33,8 +33,9 @@ class Settings:
         self.fleet_direction = 1
 
         self.button_w = 200
-        self.button_h = 50
-        self.button_color = (0, 135, 50)
+        self.button_h = 80
+        self.button_file = Path.cwd() / 'Assets' / 'images' / 'NewButton.png'
+        self.button_color = (200, 200, 200)
 
         self.text_color = (255, 255, 255)
         self.button_font_size = 40

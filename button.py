@@ -25,8 +25,10 @@ class Button:
         self.boundaries = game.screen.get_rect()
         self.settings = game.settings
         self.font = pygame.font.Font(self.settings.font_file, self.settings.button_font_size)
-        self.rect = pygame.Rect(0, 0, self.settings.button_w, self.settings.button_h)
-        self.rect.center = self.boundaries.center
+        self.button_image = pygame.image.load(self.settings.button_file)
+        self.button_image = pygame.transform.scale(self.button_image, (self.settings.button_w, self.settings.button_h))
+        self.button_rect = self.button_image.get_rect()
+        self.button_rect.center = self.boundaries.center
         self._prep_msg(msg)
     
     def _prep_msg(self, msg):
@@ -35,14 +37,14 @@ class Button:
         Args:
             msg (str): The message to be displayed on the Button
         """
-        self.msg_image = self.font.render(msg, True, self.settings.text_color, None)
+        self.msg_image = self.font.render(msg, True, self.settings.button_color, None)
         self.msg_image_rect = self.msg_image.get_rect()
-        self.msg_image_rect.center = self.rect.center
+        self.msg_image_rect.center = self.button_rect.center
 
     def draw(self):
         """Draws the button to the screen
         """
-        self.screen.fill(self.settings.button_color, self.rect)
+        self.screen.blit(self.button_image, self.button_rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
 
     def check_clicked(self, mouse_pos):
@@ -54,4 +56,4 @@ class Button:
         Returns:
             bool: True if the mouse is on the button, False if not
         """
-        return self.rect.collidepoint(mouse_pos)
+        return self.button_rect.collidepoint(mouse_pos)
