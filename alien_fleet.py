@@ -50,8 +50,8 @@ class AlienFleet:
         Args:
             alien_w (int): The width of an alien
             alien_h (int): The height of an alien
-            fleet_w (int): The total width of the fleet
-            fleet_h (int): The total height of the fleet
+            fleet_w (int): The total width of the fleet (in aliens)
+            fleet_h (int): The total height of the fleet (in aliens)
             x_offset (int): The space between each alien on the x axis
             y_offset (int): The space between each alien on the y axis
         """
@@ -64,13 +64,13 @@ class AlienFleet:
                 self._create_alien(current_x, current_y)
 
     def _create_wave_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
-        """Creates a fleet in the shape of a rectangle
+        """Creates a wavy rectangular fleet
 
         Args:
             alien_w (int): The width of an alien
             alien_h (int): The height of an alien
-            fleet_w (int): The total width of the fleet
-            fleet_h (int): The total height of the fleet
+            fleet_w (int): The total width of the fleet (in aliens)
+            fleet_h (int): The total height of the fleet (in aliens)
             x_offset (int): The space between each alien on the x axis
             y_offset (int): The space between each alien on the y axis
         """
@@ -88,8 +88,8 @@ class AlienFleet:
         Args:
             alien_w (int): The width of an alien
             alien_h (int): The height of an alien
-            fleet_w (int): The total width of the fleet
-            fleet_h (int): The total height of the fleet
+            fleet_w (int): The total width of the fleet (in aliens)
+            fleet_h (int): Half of the total height of the fleet (in aliens)
             x_offset (int): The space between each alien on the x axis
             y_offset (int): The space between each alien on the y axis
         """
@@ -111,8 +111,8 @@ class AlienFleet:
             alien_w (int): The width of an alien
             alien_h (int): The height of an alien
             screen_w (int): The width of the screen
-            fleet_w (int): The total width of the fleet
-            fleet_h (int): The total height of the fleet
+            fleet_w (int): The total width of the fleet (in aliens)
+            fleet_h (int): The total height of the fleet (in aliens)
 
         Returns:
             tuple(int,int): A tuple containing the X Offset and Y Offset for the fleet
